@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Painel do administrador: visualize e gerencie doações e pontos do Armário Social." />
+  <title>Painel · Armário Social</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="index.html" class="logo" aria-label="Página inicial do Armário Social">
+        <svg class="logo__icone" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 2h12a1 1 0 0 1 1 1v18l-3-2-2 2-2-2-2 2-2-2-3 2V3a1 1 0 0 1 1-1Z" fill="#f2994a"/>
+          <path d="M9 7c0 1.66 1.34 3 3 3s3-1.34 3-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__texto">Armário <strong>Social</strong></span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navegacao" aria-label="Navegação principal">
+        <ul id="menu-principal" class="navegacao__lista">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pontos.html">Pontos de coleta</a></li>
+          <li><a href="doar.html">Quero doar</a></li>
+          <li><a href="parceiro.html">Seja parceiro</a></li>
+          <li><a href="patrocinador.html">Seja um patrocinador</a></li>
+          <li><a href="painel.html" class="ativo">Painel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pagina-cabecalho">
+      <div class="container">
+        <h1>Painel do administrador</h1>
+        <p>Visão simplificada das doações registradas e dos pontos de coleta cadastrados.</p>
+      </div>
+    </section>
+
+    <section class="secao-conteudo">
+      <div class="container">
+        <!-- DOAÇÕES -->
+        <div class="painel-secao">
+          <h2>Doações registradas (<span id="total-doacoes">0</span>)</h2>
+          <div class="lista-painel" id="lista-doacoes"></div>
+          <div id="sem-doacoes" class="mensagem mensagem--vazio oculto">
+            Nenhuma doação registrada ainda. Cadastre uma na página
+            <a href="doar.html">Quero doar</a>.
+          </div>
+        </div>
+
+        <!-- ESTOQUE POR PONTO -->
+        <div class="painel-secao">
+          <h2>Estoque por ponto</h2>
+          <p class="campo__ajuda">O que cada ponto recebeu. As peças marcadas como
+            <span class="tag tag--excedente">excedente</span> não são necessárias ali e
+            devem ser encaminhadas para outro ponto que precise.</p>
+          <div class="lista-painel" id="lista-estoque"></div>
+          <div id="sem-estoque" class="mensagem mensagem--vazio oculto">
+            Nenhuma doação recebida ainda.
+          </div>
+        </div>
+
+        <!-- ENCAMINHAMENTOS (REDISTRIBUIÇÃO) -->
+        <div class="painel-secao">
+          <h2>Encaminhamentos sugeridos (<span id="total-redist">0</span>)</h2>
+          <p class="campo__ajuda">Itens que sobraram em um ponto e os destinos que precisam deles.</p>
+          <div class="lista-painel" id="lista-redist"></div>
+          <div id="sem-redist" class="mensagem mensagem--vazio oculto">
+            Nenhum item excedente no momento. Tudo está onde precisa.
+          </div>
+        </div>
+
+        <!-- PATROCINADORES E APOIADORES -->
+        <div class="painel-secao">
+          <h2>Patrocinadores e apoiadores (<span id="total-patrocinadores">0</span>)</h2>
+          <div class="lista-painel" id="lista-patrocinadores"></div>
+          <div id="sem-patrocinadores" class="mensagem mensagem--vazio oculto">
+            Nenhum patrocinador ou apoiador registrado ainda. Cadastre um na página
+            <a href="patrocinador.html">Seja um patrocinador</a>.
+          </div>
+        </div>
+
+        <!-- PONTOS -->
+        <div class="painel-secao">
+          <h2>Pontos de coleta cadastrados (<span id="total-pontos">0</span>)</h2>
+          <div class="lista-painel" id="lista-pontos-painel"></div>
+          <div id="sem-pontos" class="mensagem mensagem--vazio oculto">
+            Nenhum ponto cadastrado.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p><strong>Armário Social</strong> · Projeto Integrador</p>
+      <p>UNIFTEC · Análise e Desenvolvimento de Sistemas · 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/aviso.js"></script>
+  <script src="js/painel.js"></script>
+</body>
+</html>

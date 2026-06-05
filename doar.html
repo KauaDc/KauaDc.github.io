@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cadastre sua doação de roupas no Armário Social e escolha o ponto de coleta." />
+  <title>Quero doar · Armário Social</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="index.html" class="logo" aria-label="Página inicial do Armário Social">
+        <svg class="logo__icone" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 2h12a1 1 0 0 1 1 1v18l-3-2-2 2-2-2-2 2-2-2-3 2V3a1 1 0 0 1 1-1Z" fill="#f2994a"/>
+          <path d="M9 7c0 1.66 1.34 3 3 3s3-1.34 3-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__texto">Armário <strong>Social</strong></span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navegacao" aria-label="Navegação principal">
+        <ul id="menu-principal" class="navegacao__lista">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pontos.html">Pontos de coleta</a></li>
+          <li><a href="doar.html" class="ativo">Quero doar</a></li>
+          <li><a href="parceiro.html">Seja parceiro</a></li>
+          <li><a href="patrocinador.html">Seja um patrocinador</a></li>
+          <li><a href="painel.html">Painel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pagina-cabecalho">
+      <div class="container">
+        <h1>Cadastrar doação</h1>
+        <p>Preencha os dados abaixo e escolha onde deseja entregar suas peças.</p>
+      </div>
+    </section>
+
+    <section class="secao-conteudo">
+      <div class="container">
+        <form class="formulario" id="form-doacao" novalidate>
+          <div class="campo">
+            <label for="nome">Seu nome <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="text" id="nome" name="nome" required autocomplete="name" />
+          </div>
+
+          <div class="campo">
+            <label for="contato">Contato (telefone ou e-mail) <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="text" id="contato" name="contato" required autocomplete="tel" />
+          </div>
+
+          <div class="campo">
+            <label>Tipos de peça <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <p class="campo__ajuda">Marque tudo o que você vai doar. Você entrega tudo num único ponto, e o que ele não precisar é encaminhado para outro ponto que precise.</p>
+            <div class="grupo-checkbox" id="grupo-pecas"></div>
+          </div>
+
+          <div class="campo">
+            <label for="quantidade">Quantidade aproximada de peças <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="number" id="quantidade" name="quantidade" min="1" value="1" required />
+          </div>
+
+          <div class="campo">
+            <label>Ponto de coleta <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <p class="campo__ajuda" id="ajuda-pontos">Clique em um ponto para escolher onde entregar suas peças.</p>
+            <div class="filtro-cidade">
+              <label for="filtro-cidade" class="oculto">Filtrar por cidade</label>
+              <select id="filtro-cidade" name="filtro-cidade">
+                <option value="">Todas as cidades</option>
+              </select>
+            </div>
+            <div class="grade-cards grade-cards--selecao" id="lista-pontos"></div>
+            <div id="sem-pontos" class="mensagem mensagem--vazio oculto">
+              Nenhum ponto de coleta nessa cidade. Tente outra cidade.
+            </div>
+            <!-- Guarda o ID do ponto escolhido via clique no card -->
+            <input type="hidden" id="ponto" name="ponto" />
+          </div>
+
+          <div class="campo">
+            <label for="observacoes">Observações (opcional)</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Ex.: roupas lavadas, tamanhos variados, melhor horário para entrega…"></textarea>
+          </div>
+
+          <button type="submit" class="botao botao--destaque">Registrar doação</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p><strong>Armário Social</strong> · Projeto Integrador</p>
+      <p>UNIFTEC · Análise e Desenvolvimento de Sistemas · 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/aviso.js"></script>
+  <script src="js/doar.js"></script>
+</body>
+</html>

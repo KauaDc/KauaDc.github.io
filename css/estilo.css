@@ -1,0 +1,956 @@
+/* =========================================================
+   Armário Social — Folha de estilos principal
+   Projeto Integrador — UNIFTEC 2026
+   Design responsivo (mobile-first) com CSS Grid e Flexbox
+   ========================================================= */
+
+/* ---------- Variáveis de cor e tema ---------- */
+:root {
+  --cor-principal: #2a9d8f;       /* verde-petróleo: confiança e solidariedade */
+  --cor-principal-escura: #21807a;
+  --cor-destaque: #f2994a;        /* laranja: botões de ação */
+  --cor-destaque-escura: #e07f2e;
+  --cor-fundo: #f6f9f8;           /* fundo claro */
+  --cor-cartao: #ffffff;
+  --cor-texto: #2d3436;
+  --cor-texto-suave: #5c6b6a;
+  --cor-borda: #e1e8e7;
+  --sombra: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --raio: 14px;
+  --largura-max: 1100px;
+}
+
+/* ---------- Reset básico ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  line-height: 1.6;
+}
+
+/* ---------- Estrutura / container ---------- */
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--cor-principal-escura);
+  text-decoration: none;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+}
+
+.botao--destaque {
+  background-color: var(--cor-destaque);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(242, 153, 74, 0.35);
+}
+
+.botao--destaque:hover {
+  background-color: var(--cor-destaque-escura);
+}
+
+.botao--secundario {
+  background-color: transparent;
+  color: var(--cor-principal-escura);
+  border-color: var(--cor-principal);
+}
+
+.botao--secundario:hover {
+  background-color: var(--cor-principal);
+  color: #fff;
+}
+
+.botao--pequeno {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.botao--perigo {
+  background-color: #fdecec;
+  color: #c0392b;
+  border-color: #f5c6cb;
+}
+
+.botao--perigo:hover {
+  background-color: #c0392b;
+  color: #fff;
+}
+
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--cor-cartao);
+  border-bottom: 1px solid var(--cor-borda);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.cabecalho__conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cor-texto);
+  font-size: 1.25rem;
+}
+
+.logo__texto strong {
+  color: var(--cor-principal);
+}
+
+/* ---------- Navegação ---------- */
+.navegacao__lista {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.navegacao__lista a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  color: var(--cor-texto-suave);
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navegacao__lista a:hover,
+.navegacao__lista a.ativo {
+  background-color: #e3f2ef;
+  color: var(--cor-principal-escura);
+}
+
+/* Botão hambúrguer (aparece apenas no mobile) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--cor-principal);
+  border-radius: 2px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, #e3f2ef 0%, #f6f9f8 100%);
+  padding: 3rem 0;
+}
+
+.hero__conteudo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero__texto h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitulo {
+  font-size: 1.1rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: 1.75rem;
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero__ilustracao {
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- Seções genéricas ---------- */
+.secao__titulo {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.secao__intro {
+  text-align: center;
+  color: var(--cor-texto-suave);
+  margin-bottom: 2.5rem;
+}
+
+.como-funciona {
+  padding: 3.5rem 1.25rem;
+}
+
+/* Passos (como funciona) */
+.passos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.passo {
+  background-color: var(--cor-cartao);
+  border-radius: var(--raio);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+.passo__numero {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  background-color: var(--cor-principal);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.passo h3 {
+  margin-bottom: 0.5rem;
+}
+
+.passo p {
+  color: var(--cor-texto-suave);
+  margin-bottom: 1rem;
+}
+
+.passo__link {
+  font-weight: 600;
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  background-color: var(--cor-principal);
+  color: #fff;
+  padding: 3.5rem 0;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.cta p {
+  margin-bottom: 1.75rem;
+  opacity: 0.95;
+}
+
+/* ---------- Patrocinadores e apoiadores (logo wall) ---------- */
+.apoiadores {
+  padding: 3.5rem 0;
+  background-color: var(--cor-cartao);
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* Rótulo de cada nível (Patrocinadores / Apoiadores) */
+.apoiadores__nivel {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+  margin: 2rem 0 1rem;
+}
+
+.apoiadores__nivel:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.logos-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Cada logo: cinza e suave por padrão; ganha cor e relevo ao passar o mouse */
+.logo-apoiador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-align: left;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.25rem 1rem;
+  min-height: 84px;
+  color: var(--cor-texto);
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.15s ease,
+    box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.logo-apoiador:hover,
+.logo-apoiador:focus-visible {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+  border-color: var(--cor-principal);
+  outline: none;
+}
+
+.logo-apoiador__icone {
+  flex-shrink: 0;
+}
+
+/* Marca em "monograma" (inicial + cor) para patrocinadores cadastrados */
+.logo-apoiador__mono {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.logo-apoiador__nome {
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+/* Patrocinadores em destaque: cards e logos maiores */
+.logos-grid--patrocinadores .logo-apoiador {
+  min-height: 112px;
+}
+
+.logos-grid--patrocinadores .logo-apoiador__nome {
+  font-size: 1.05rem;
+}
+
+/* Chamada para virar parceiro */
+.apoiadores__cta {
+  text-align: center;
+  color: var(--cor-texto-suave);
+  margin-top: 2rem;
+}
+
+.apoiadores__cta a {
+  font-weight: 600;
+}
+
+@media (min-width: 600px) {
+  .logos-grid--patrocinadores {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .logos-grid--apoiadores {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .logos-grid--apoiadores {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  background-color: #1f2d2c;
+  color: #cdd8d6;
+  padding: 1.75rem 0;
+  text-align: center;
+}
+
+.rodape__conteudo p {
+  margin: 0.15rem 0;
+  font-size: 0.92rem;
+}
+
+/* ---------- Páginas internas ---------- */
+.pagina-cabecalho {
+  background: linear-gradient(135deg, #e3f2ef 0%, #f6f9f8 100%);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
+.pagina-cabecalho h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.pagina-cabecalho p {
+  color: var(--cor-texto-suave);
+}
+
+.secao-conteudo {
+  padding: 2.5rem 0 3.5rem;
+}
+
+/* ---------- Busca / filtro ---------- */
+.filtro {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filtro input {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* ---------- Grade de pontos / cards ---------- */
+.grade-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--cor-cartao);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card__titulo {
+  font-size: 1.2rem;
+  color: var(--cor-principal-escura);
+}
+
+.card__info {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.card__info strong {
+  color: var(--cor-texto);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background-color: #e3f2ef;
+  color: var(--cor-principal-escura);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.card__rodape {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+/* ---------- Cards selecionáveis (escolha de ponto na doação) ---------- */
+/* Seletor de cidade acima da lista de pontos na doação */
+.filtro-cidade {
+  margin-bottom: 1rem;
+}
+
+/* Dentro do formulário, mostra os pontos em uma coluna por vez */
+.grade-cards--selecao {
+  grid-template-columns: 1fr;
+  margin-top: 0.25rem;
+}
+
+.card--selecionavel {
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card--selecionavel:hover {
+  transform: translateY(-2px);
+  border-color: var(--cor-principal);
+}
+
+.card--selecionavel:focus-visible {
+  outline: none;
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+}
+
+.card--selecionado {
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.25);
+}
+
+/* Badge "Escolher" / "Selecionado" no topo do card */
+.card__selecao {
+  align-self: flex-end;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-suave);
+  border: 1px solid var(--cor-borda);
+}
+
+.card--selecionado .card__selecao {
+  background-color: var(--cor-principal);
+  color: #fff;
+  border-color: var(--cor-principal);
+}
+
+/* Peça que coincide com o item que o doador escolheu */
+.tag--match {
+  background-color: var(--cor-destaque);
+  color: #fff;
+}
+
+/* Peça excedente (recebida por um ponto que não precisa dela) */
+.tag--excedente {
+  background-color: #fff3e6;
+  color: var(--cor-destaque-escura);
+  border: 1px solid #f6d3ad;
+}
+
+/* Notas dentro do card de ponto (na escolha da doação) */
+.card__nota {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
+
+.card__nota--ok {
+  color: var(--cor-principal-escura);
+  font-weight: 600;
+}
+
+/* ---------- Formulários ---------- */
+.formulario {
+  background-color: var(--cor-cartao);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.campo {
+  margin-bottom: 1.25rem;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.campo .obrigatorio {
+  color: #c0392b;
+}
+
+/* Texto auxiliar abaixo do rótulo de um campo */
+.campo__ajuda {
+  font-weight: 400;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  margin: -0.15rem 0 0.7rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--cor-texto);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Grupo de checkboxes (tipos de peças) */
+.grupo-checkbox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.grupo-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  background-color: var(--cor-fundo);
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda);
+  cursor: pointer;
+}
+
+.grupo-checkbox input {
+  width: auto;
+}
+
+/* Mensagem de sucesso / aviso */
+.mensagem {
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.mensagem--sucesso {
+  background-color: #e6f7f2;
+  color: #1e7d6e;
+  border: 1px solid #b7e6da;
+}
+
+.mensagem--vazio {
+  background-color: #fff7e9;
+  color: #9a6700;
+  border: 1px solid #f3e0b8;
+  text-align: center;
+}
+
+.oculto {
+  display: none;
+}
+
+/* ---------- Modal de avisos ---------- */
+.aviso-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background-color: rgba(31, 45, 44, 0.55);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* Garante que o atributo [hidden] vença o display:flex acima */
+.aviso-overlay[hidden] {
+  display: none;
+}
+
+.aviso-overlay--ativo {
+  opacity: 1;
+}
+
+.aviso {
+  background-color: var(--cor-cartao);
+  border-radius: var(--raio);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  padding: 2rem 1.75rem 1.75rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  transform: translateY(14px) scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.aviso-overlay--ativo .aviso {
+  transform: translateY(0) scale(1);
+}
+
+.aviso__icone {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.aviso-overlay--ativo .aviso__icone {
+  animation: aviso-pop 0.35s ease 0.05s both;
+}
+
+@keyframes aviso-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.aviso--sucesso .aviso__icone {
+  background-color: var(--cor-principal);
+}
+
+.aviso--info .aviso__icone {
+  background-color: #2980b9;
+}
+
+.aviso--aviso .aviso__icone {
+  background-color: var(--cor-destaque);
+}
+
+.aviso__titulo {
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+  color: var(--cor-texto);
+}
+
+.aviso__mensagem {
+  color: var(--cor-texto-suave);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.aviso__mensagem a {
+  font-weight: 600;
+}
+
+.aviso__ok {
+  min-width: 170px;
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+  .aviso-overlay,
+  .aviso {
+    transition: none;
+  }
+  .aviso-overlay--ativo .aviso__icone {
+    animation: none;
+  }
+}
+
+/* ---------- Painel: tabelas/listas ---------- */
+.painel-secao {
+  margin-bottom: 3rem;
+}
+
+.painel-secao h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+.lista-painel {
+  display: grid;
+  gap: 1rem;
+}
+
+.item-painel {
+  background-color: var(--cor-cartao);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.item-painel__dados {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Agrupa os botões de ação do item (ex.: Aprovar + Remover) */
+.item-painel__acoes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Selo de situação (aprovado / aguardando) */
+.status {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.status--aprovado {
+  background-color: #e6f7f2;
+  color: #1e7d6e;
+  border: 1px solid #b7e6da;
+}
+
+.status--pendente {
+  background-color: #fff7e9;
+  color: #9a6700;
+  border: 1px solid #f3e0b8;
+}
+
+.item-painel__dados h3 {
+  color: var(--cor-principal-escura);
+  margin-bottom: 0.25rem;
+}
+
+/* Manutenção de itens do ponto (painel) — ocupa a linha inteira do card */
+.gerenciar {
+  flex-basis: 100%;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--cor-borda);
+}
+
+.gerenciar > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--cor-principal-escura);
+  list-style-position: inside;
+}
+
+.gerenciar > summary:hover {
+  color: var(--cor-principal);
+}
+
+.gerenciar .grupo-checkbox {
+  margin: 0.85rem 0;
+}
+
+.item-painel__dados p {
+  color: var(--cor-texto-suave);
+  font-size: 0.92rem;
+  margin: 0.1rem 0;
+}
+
+/* ---------- Responsividade ---------- */
+@media (min-width: 600px) {
+  .grade-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__conteudo {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .hero__texto h1 {
+    font-size: 2.8rem;
+  }
+
+  .passos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grade-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Menu responsivo — abaixo de 760px vira menu vertical com toggle */
+@media (max-width: 760px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .navegacao {
+    flex-basis: 100%;
+    display: none;
+  }
+
+  .navegacao.aberto {
+    display: block;
+  }
+
+  .navegacao__lista {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 0.75rem;
+  }
+
+  .navegacao__lista a {
+    padding: 0.7rem 0.9rem;
+  }
+}

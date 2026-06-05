@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Armário Social — conecta doadores de roupas a pessoas em situação de vulnerabilidade, organizando pontos de coleta." />
+  <title>Armário Social · Doe agasalhos, aqueça vidas</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <!-- Cabeçalho fixo com logo e navegação -->
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="index.html" class="logo" aria-label="Página inicial do Armário Social">
+        <!-- Ícone (SVG inline) de armário/agasalho -->
+        <svg class="logo__icone" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 2h12a1 1 0 0 1 1 1v18l-3-2-2 2-2-2-2 2-2-2-3 2V3a1 1 0 0 1 1-1Z" fill="#f2994a"/>
+          <path d="M9 7c0 1.66 1.34 3 3 3s3-1.34 3-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__texto">Armário <strong>Social</strong></span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navegacao" aria-label="Navegação principal">
+        <ul id="menu-principal" class="navegacao__lista">
+          <li><a href="index.html" class="ativo">Início</a></li>
+          <li><a href="pontos.html">Pontos de coleta</a></li>
+          <li><a href="doar.html">Quero doar</a></li>
+          <li><a href="parceiro.html">Seja parceiro</a></li>
+          <li><a href="patrocinador.html">Seja um patrocinador</a></li>
+          <li><a href="painel.html">Painel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção Hero -->
+    <section class="hero">
+      <div class="container hero__conteudo">
+        <div class="hero__texto">
+          <h1>Doe um agasalho, aqueça uma vida</h1>
+          <p class="hero__subtitulo">
+            O <strong>Armário Social</strong> conecta quem quer doar roupas de inverno a quem mais precisa,
+            reunindo os pontos de coleta da sua região em um só lugar.
+          </p>
+          <div class="hero__acoes">
+            <a href="doar.html" class="botao botao--destaque">Quero doar</a>
+            <a href="parceiro.html" class="botao botao--secundario">Seja um estabelecimento parceiro</a>
+          </div>
+        </div>
+        <div class="hero__ilustracao" aria-hidden="true">
+          <!-- Ilustração simples em SVG -->
+          <svg width="280" height="280" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="90" fill="#e3f2ef"/>
+            <path d="M70 60h60a4 4 0 0 1 4 4v80l-15-10-10 10-9-10-9 10-10-10-15 10V64a4 4 0 0 1 4-4Z" fill="#2a9d8f"/>
+            <path d="M88 78c0 6.6 5.4 12 12 12s12-5.4 12-12" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="100" cy="60" r="8" fill="#f2994a"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="como-funciona container">
+      <h2 class="secao__titulo">Como funciona</h2>
+      <p class="secao__intro">Em apenas três passos você transforma o que não usa mais em calor para alguém.</p>
+
+      <div class="passos">
+        <article class="passo">
+          <div class="passo__numero" aria-hidden="true">1</div>
+          <h3>Encontre um ponto</h3>
+          <p>Busque o estabelecimento parceiro mais próximo de você e veja o que ele aceita.</p>
+          <a href="pontos.html" class="passo__link">Ver pontos de coleta →</a>
+        </article>
+
+        <article class="passo">
+          <div class="passo__numero" aria-hidden="true">2</div>
+          <h3>Leve sua doação</h3>
+          <p>Registre a doação na plataforma e entregue suas peças no ponto escolhido.</p>
+          <a href="doar.html" class="passo__link">Cadastrar doação →</a>
+        </article>
+
+        <article class="passo">
+          <div class="passo__numero" aria-hidden="true">3</div>
+          <h3>Ajude alguém</h3>
+          <p>Suas roupas chegam organizadas a quem está em situação de vulnerabilidade.</p>
+          <a href="parceiro.html" class="passo__link">Seja um ponto parceiro →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Chamada final -->
+    <section class="cta">
+      <div class="container cta__conteudo">
+        <h2>Cada peça doada faz a diferença</h2>
+        <p>Junte-se à rede solidária do Armário Social e ajude a manter o inverno mais aquecido para todos.</p>
+        <a href="doar.html" class="botao botao--destaque">Começar a doar</a>
+      </div>
+    </section>
+
+    <!-- Patrocinadores e apoiadores (logo wall acima do rodapé) -->
+    <section class="apoiadores" id="apoiadores">
+      <div class="container">
+        <h2 class="secao__titulo">Patrocinadores e apoiadores</h2>
+        <p class="secao__intro">Quem caminha junto com o Armário Social para aquecer mais vidas neste inverno.</p>
+
+        <!-- Patrocinadores: logos maiores, em destaque -->
+        <p class="apoiadores__nivel">Patrocinadores</p>
+        <div class="logos-grid logos-grid--patrocinadores" id="logos-patrocinadores">
+          <!-- Espaços reservados: troque por logos reais conforme novos patrocinadores entrarem -->
+          <a class="logo-apoiador" href="#" aria-label="Patrocinador">
+            <svg class="logo-apoiador__icone" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Patrocinador</span>
+          </a>
+          <a class="logo-apoiador" href="https://www.uniftec.com.br" target="_blank" rel="noopener" aria-label="Patrocinador: UNIFTEC">
+            <svg class="logo-apoiador__icone" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 6 2 13l14 7 14-7z" fill="#2980b9"/>
+              <path d="M8 17v6c0 2 16 2 16 0v-6" fill="#2980b9" opacity="0.55"/>
+            </svg>
+            <span class="logo-apoiador__nome">UNIFTEC</span>
+          </a>
+          <a class="logo-apoiador" href="#" aria-label="Patrocinador">
+            <svg class="logo-apoiador__icone" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Patrocinador</span>
+          </a>
+        </div>
+
+        <!-- Apoiadores: logos menores -->
+        <p class="apoiadores__nivel">Apoiadores</p>
+        <div class="logos-grid logos-grid--apoiadores" id="logos-apoiadores">
+          <a class="logo-apoiador" href="https://www.uniftec.com.br" target="_blank" rel="noopener" aria-label="Apoiador: UNIFTEC">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 6 2 13l14 7 14-7z" fill="#2980b9"/>
+              <path d="M8 17v6c0 2 16 2 16 0v-6" fill="#2980b9" opacity="0.55"/>
+            </svg>
+            <span class="logo-apoiador__nome">UNIFTEC</span>
+          </a>
+          <!-- Espaços reservados: troque por logos reais conforme novos apoiadores entrarem -->
+          <a class="logo-apoiador" href="#" aria-label="Apoiador 1">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Apoiador 1</span>
+          </a>
+          <a class="logo-apoiador" href="#" aria-label="Apoiador 2">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Apoiador 2</span>
+          </a>
+          <a class="logo-apoiador" href="#" aria-label="Apoiador 3">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Apoiador 3</span>
+          </a>
+          <a class="logo-apoiador" href="#" aria-label="Apoiador 4">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Apoiador 4</span>
+          </a>
+          <a class="logo-apoiador" href="#" aria-label="Apoiador 5">
+            <svg class="logo-apoiador__icone" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="4" y="4" width="24" height="24" rx="5" fill="#cfd8d6"/>
+              <circle cx="12" cy="12" r="3" fill="#fff"/>
+              <path d="M7 24l6-7 4 4 4-5 4 8z" fill="#fff"/>
+            </svg>
+            <span class="logo-apoiador__nome">Apoiador 5</span>
+          </a>
+        </div>
+
+        <p class="apoiadores__cta">
+          Quer ver sua marca aqui? <a href="patrocinador.html">Seja um patrocinador</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p><strong>Armário Social</strong> · Projeto Integrador</p>
+      <p>UNIFTEC · Análise e Desenvolvimento de Sistemas · 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/apoiadores.js"></script>
+</body>
+</html>

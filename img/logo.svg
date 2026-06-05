@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none">
+  <!-- Logo do Armário Social: armário/agasalho -->
+  <rect width="24" height="24" rx="5" fill="#2a9d8f"/>
+  <path d="M7 4h10a1 1 0 0 1 1 1v15l-2.5-1.7-1.7 1.7-1.6-1.7-1.6 1.7-1.7-1.7L6 20V5a1 1 0 0 1 1-1Z" fill="#f2994a"/>
+  <path d="M9.5 8c0 1.4 1.1 2.5 2.5 2.5S14.5 9.4 14.5 8" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+</svg>
