@@ -6,7 +6,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-patrocinador");
 
-  form.addEventListener("submit", function (evento) {
+  form.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
@@ -27,15 +27,25 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Salva o patrocinador/apoiador
-    salvarPatrocinador({
-      nome: nome,
-      responsavel: responsavel,
-      contato: contato,
-      site: site,
-      nivel: nivel,
-      mensagem: mensagem,
-    });
+    // Salva o patrocinador/apoiador no banco
+    try {
+      await salvarPatrocinador({
+        nome: nome,
+        responsavel: responsavel,
+        contato: contato,
+        site: site,
+        nivel: nivel,
+        mensagem: mensagem,
+      });
+    } catch (erro) {
+      mostrarAviso({
+        tipo: "aviso",
+        titulo: "Não foi possível cadastrar",
+        mensagem: erro.message,
+        duracao: 0,
+      });
+      return;
+    }
 
     // Confirma com o modal de aviso
     const artigo = nivel === "Patrocinador" ? "patrocinador" : "apoiador";

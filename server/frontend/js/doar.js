@@ -6,7 +6,7 @@
    - Ao marcar peças, ordena os pontos por quem mais precisa delas e indica
      no card o que fica e o que será encaminhado a outro ponto
    - Filtro por cidade; o ponto é escolhido clicando no card
-   - A doação é salva no localStorage
+   - A doação é salva no banco através da API
    ========================================================= */
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-doacao");
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputPonto = document.getElementById("ponto"); // hidden: guarda o id escolhido
 
   let pontoSelecionadoId = null;
+  let pontos = []; // carregado da API uma única vez
 
   /* Retorna a lista de peças marcadas no formulário */
   function pecasSelecionadas() {
@@ -44,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Preenche o seletor de cidades com as cidades dos pontos (sem repetir) */
   function carregarCidades() {
-    const cidades = [...new Set(obterPontos().map((p) => p.cidade))].sort(
-      (a, b) => a.localeCompare(b, "pt-BR")
+    const cidades = [...new Set(pontos.map((p) => p.cidade))].sort((a, b) =>
+      a.localeCompare(b, "pt-BR")
     );
     cidades.forEach((cidade) => {
       const opcao = document.createElement("option");
@@ -120,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
      TODOS (apenas filtrada por cidade). Quando há itens marcados, os
      pontos são ordenados por quem mais precisa dos itens escolhidos. */
   function renderizarPontos() {
-    const pontos = obterPontos();
     const marcadas = pecasSelecionadas();
     const cidade = filtroCidadeEl.value;
 
@@ -194,19 +194,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  carregarPecas();
-  carregarCidades();
-  renderizarPontos();
+  /* Carrega os pontos da API e monta a página */
+  async function iniciar() {
+    carregarPecas();
+    try {
+      pontos = await obterPontos();
+    } catch (erro) {
+      listaPontosEl.innerHTML = `<div class="mensagem mensagem--vazio">${erro.message}</div>`;
+      return;
+    }
+    carregarCidades();
+    renderizarPontos();
 
-  // Se a URL trouxer ?ponto=ID (vindo da página de pontos), já seleciona
-  const params = new URLSearchParams(window.location.search);
-  const pontoUrl = params.get("ponto");
-  if (pontoUrl && obterPontos().some((p) => p.id === Number(pontoUrl))) {
-    selecionarPonto(pontoUrl);
+    // Se a URL trouxer ?ponto=ID (vindo da página de pontos), já seleciona
+    const params = new URLSearchParams(window.location.search);
+    const pontoUrl = params.get("ponto");
+    if (pontoUrl && pontos.some((p) => p.id === Number(pontoUrl))) {
+      selecionarPonto(pontoUrl);
+    }
   }
 
   /* Tratamento do envio do formulário */
-  form.addEventListener("submit", function (evento) {
+  form.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
@@ -237,18 +246,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Recupera o ponto escolhido para guardar junto
-    const ponto = obterPontos().find((p) => p.id === pontoSelecionadoId);
+    const ponto = pontos.find((p) => p.id === pontoSelecionadoId);
 
-    // Salva a doação
-    salvarDoacao({
-      nome: nome,
-      contato: contato,
-      pontoId: pontoSelecionadoId,
-      pontoNome: ponto ? `${ponto.nome} (${ponto.cidade})` : "Ponto não identificado",
-      pecas: pecasMarcadas,
-      quantidade: Number(quantidade),
-      observacoes: observacoes,
-    });
+    // Salva a doação no banco
+    try {
+      await salvarDoacao({
+        nome: nome,
+        contato: contato,
+        pontoId: pontoSelecionadoId,
+        pontoNome: ponto ? `${ponto.nome} (${ponto.cidade})` : "Ponto não identificado",
+        pecas: pecasMarcadas,
+        quantidade: Number(quantidade),
+        observacoes: observacoes,
+      });
+    } catch (erro) {
+      mostrarAviso({
+        tipo: "aviso",
+        titulo: "Não foi possível registrar",
+        mensagem: erro.message,
+        duracao: 0,
+      });
+      return;
+    }
 
     // Limpa o formulário e confirma com o modal de aviso
     form.reset();
@@ -263,4 +282,6 @@ document.addEventListener("DOMContentLoaded", function () {
       duracao: 0,
     });
   });
+
+  iniciar();
 });

@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
   carregarPecas();
 
   /* Tratamento do envio */
-  form.addEventListener("submit", function (evento) {
+  form.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
     const responsavel = document.getElementById("responsavel").value.trim();
+    const email = document.getElementById("email").value.trim();
     const endereco = document.getElementById("endereco").value.trim();
     const bairro = document.getElementById("bairro").value.trim();
     const cidade = document.getElementById("cidade").value.trim();
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ).map((c) => c.value);
 
     // Validação simples
-    if (!nome || !responsavel || !endereco || !bairro || !cidade || !horario || pecasMarcadas.length === 0) {
+    if (!nome || !responsavel || !email || !endereco || !bairro || !cidade || !horario || pecasMarcadas.length === 0) {
       mostrarAviso({
         tipo: "aviso",
         titulo: "Faltam informações",
@@ -46,16 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Salva o novo ponto
-    salvarPonto({
-      nome: nome,
-      responsavel: responsavel,
-      endereco: endereco,
-      bairro: bairro,
-      cidade: cidade,
-      horario: horario,
-      pecas: pecasMarcadas,
-    });
+    // Salva o novo ponto no banco
+    try {
+      await salvarPonto({
+        nome: nome,
+        responsavel: responsavel,
+        email: email,
+        endereco: endereco,
+        bairro: bairro,
+        cidade: cidade,
+        horario: horario,
+        pecas: pecasMarcadas,
+      });
+    } catch (erro) {
+      mostrarAviso({
+        tipo: "aviso",
+        titulo: "Não foi possível cadastrar",
+        mensagem: erro.message,
+        duracao: 0,
+      });
+      return;
+    }
 
     // Confirma com o modal de aviso
     form.reset();

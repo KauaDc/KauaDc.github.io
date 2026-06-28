@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Área do Parceiro — entre para gerenciar pontos, doações e patrocinadores do Armário Social." />
+  <title>Entrar como Parceiro · Armário Social</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="index.html" class="logo" aria-label="Página inicial do Armário Social">
+        <svg class="logo__icone" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 2h12a1 1 0 0 1 1 1v18l-3-2-2 2-2-2-2 2-2-2-3 2V3a1 1 0 0 1 1-1Z" fill="#f2994a"/>
+          <path d="M9 7c0 1.66 1.34 3 3 3s3-1.34 3-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__texto">Armário <strong>Social</strong></span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navegacao" aria-label="Navegação principal">
+        <ul id="menu-principal" class="navegacao__lista">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="pontos.html">Pontos de coleta</a></li>
+          <li><a href="doar.html">Quero doar</a></li>
+          <li><a href="parceiro.html">Seja parceiro</a></li>
+          <li><a href="patrocinador.html">Seja um patrocinador</a></li>
+          <li><a href="painel.html">Painel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pagina-cabecalho">
+      <div class="container">
+        <h1>Entrar como Parceiro</h1>
+        <p>Acesso restrito aos estabelecimentos parceiros para gerenciar pontos, doações e patrocinadores.</p>
+      </div>
+    </section>
+
+    <section class="secao-conteudo">
+      <div class="container">
+        <form class="formulario" id="form-login" novalidate>
+          <div class="campo">
+            <label for="usuario">Usuário <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="text" id="usuario" name="usuario" required autocomplete="username" autofocus />
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="password" id="senha" name="senha" required autocomplete="current-password" />
+          </div>
+
+          <button type="submit" class="botao botao--destaque">Entrar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p><strong>Armário Social</strong> · Projeto Integrador</p>
+      <p>UNIFTEC · Análise e Desenvolvimento de Sistemas · 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/aviso.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

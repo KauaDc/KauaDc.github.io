@@ -1,0 +1,80 @@
+// =========================================================
+// Armário Social — Schema do Prisma
+// Define os modelos (tabelas) e a conexão com o PostgreSQL.
+// Comandos úteis:
+//   npx prisma migrate dev --name init   # cria/atualiza as tabelas + roda o seed
+//   npx prisma studio                    # explora os dados no navegador
+// =========================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Ponto de coleta. Todo ponto aceita qualquer peça; "pecas" guarda o que
+/// ele PRECISA no momento.
+model Ponto {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  responsavel String
+  email       String   @default("")
+  endereco    String
+  bairro      String
+  cidade      String
+  horario     String
+  pecas       String[] @default([])
+
+  doacoes Doacao[]
+
+  @@map("pontos")
+}
+
+/// Doação registrada para um ponto. Se o ponto for removido, a doação é
+/// mantida (pontoId vira NULL) e o nome do ponto continua em pontoNome.
+model Doacao {
+  id          Int      @id @default(autoincrement())
+  data        DateTime @default(now()) @db.Timestamptz(6)
+  nome        String
+  contato     String
+  pontoId     Int?     @map("ponto_id")
+  ponto       Ponto?   @relation(fields: [pontoId], references: [id], onDelete: SetNull)
+  pontoNome   String   @map("ponto_nome")
+  pecas       String[] @default([])
+  quantidade  Int      @default(0)
+  observacoes String   @default("")
+
+  @@index([pontoId])
+  @@map("doacoes")
+}
+
+/// Empresa/organização que apoia o projeto. "nivel" é "Patrocinador" ou
+/// "Apoiador"; só aparece na página inicial após "aprovado".
+model Patrocinador {
+  id          Int      @id @default(autoincrement())
+  data        DateTime @default(now()) @db.Timestamptz(6)
+  nome        String
+  aprovado    Boolean  @default(false)
+  responsavel String
+  contato     String
+  site        String   @default("")
+  nivel       String
+  mensagem    String   @default("")
+
+  @@map("patrocinadores")
+}
+
+/// Conta de Parceiro (acesso autenticado ao painel). A senha é guardada
+/// apenas como hash (bcrypt); nunca em texto puro.
+model Parceiro {
+  id        Int      @id @default(autoincrement())
+  usuario   String   @unique
+  senhaHash String   @map("senha_hash")
+  nome      String   @default("")
+  criadoEm  DateTime @default(now()) @map("criado_em") @db.Timestamptz(6)
+
+  @@map("parceiros")
+}

@@ -3,7 +3,7 @@
    Acrescenta os patrocinadores/apoiadores cadastrados (localStorage)
    às grades de logos, usando um "monograma" (inicial + cor) como marca.
    ========================================================= */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const grids = {
     Patrocinador: document.getElementById("logos-patrocinadores"),
     Apoiador: document.getElementById("logos-apoiadores"),
@@ -22,7 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return cores[soma % cores.length];
   }
 
-  obterPatrocinadoresAprovados().forEach(function (p) {
+  // Mural decorativo: se a API falhar, apenas mantém os logos de exemplo.
+  let aprovados = [];
+  try {
+    aprovados = await obterPatrocinadoresAprovados();
+  } catch (erro) {
+    console.error("Não foi possível carregar os apoiadores:", erro.message);
+    return;
+  }
+
+  aprovados.forEach(function (p) {
     const grid = grids[p.nivel] || grids.Apoiador;
     if (!grid) return;
 

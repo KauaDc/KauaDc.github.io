@@ -1,13 +1,16 @@
 /* =========================================================
    Armário Social — Página de Pontos de coleta
-   Renderiza os cards de pontos e aplica o filtro de busca
-   por cidade ou bairro.
+   Carrega os pontos da API uma única vez e aplica o filtro de
+   busca por cidade ou bairro em memória (sem novas requisições
+   a cada tecla digitada).
    ========================================================= */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const listaEl = document.getElementById("lista-pontos");
   const buscaEl = document.getElementById("busca");
   const semResultadosEl = document.getElementById("sem-resultados");
   const contadorEl = document.getElementById("contador-resultados");
+
+  let pontos = [];
 
   /* Cria o HTML de um card de ponto */
   function montarCard(ponto) {
@@ -21,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p class="card__info">📍 <span><strong>${ponto.endereco}</strong>, ${ponto.bairro}, ${ponto.cidade}</span></p>
         <p class="card__info">🕒 <span>${ponto.horario}</span></p>
         <p class="card__info">👤 <span>${ponto.responsavel}</span></p>
+        ${ponto.email ? `<p class="card__info">📧 <span>${ponto.email}</span></p>` : ""}
         ${
           ponto.pecas.length
             ? `<div>
@@ -38,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Renderiza a lista, aplicando o termo de busca (se houver) */
   function renderizar(termo = "") {
-    const pontos = obterPontos();
     const termoLimpo = termo.trim().toLowerCase();
 
     const filtrados = pontos.filter((ponto) => {
@@ -62,10 +65,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Renderiza tudo ao carregar a página
+  // Carrega os pontos da API e faz a primeira renderização
+  try {
+    pontos = await obterPontos();
+  } catch (erro) {
+    listaEl.innerHTML = `<div class="mensagem mensagem--vazio">${erro.message}</div>`;
+    return;
+  }
+
   renderizar();
 
-  // Filtra em tempo real conforme o usuário digita
+  // Filtra em tempo real conforme o usuário digita (em memória)
   buscaEl.addEventListener("input", function () {
     renderizar(buscaEl.value);
   });

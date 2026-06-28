@@ -43,8 +43,11 @@
 
     <section class="secao-conteudo">
       <div class="container">
-        <!-- DOAÇÕES -->
-        <div class="painel-secao">
+        <!-- Status de login / papel (preenchido pelo painel.js) -->
+        <div id="painel-status" style="margin-bottom:1.5rem;"></div>
+
+        <!-- DOAÇÕES (visível apenas para o parceiro logado) -->
+        <div class="painel-secao" id="secao-doacoes">
           <h2>Doações registradas (<span id="total-doacoes">0</span>)</h2>
           <div class="lista-painel" id="lista-doacoes"></div>
           <div id="sem-doacoes" class="mensagem mensagem--vazio oculto">
@@ -93,6 +96,31 @@
             Nenhum ponto cadastrado.
           </div>
         </div>
+
+        <!-- CONTAS DE PARCEIRO (somente administrador) -->
+        <div class="painel-secao" id="secao-parceiros" style="display:none;">
+          <h2>Contas de parceiro (<span id="total-parceiros">0</span>)</h2>
+          <p class="campo__ajuda">Crie logins para os estabelecimentos parceiros. Eles poderão entrar e gerenciar os itens que cada ponto precisa.</p>
+          <form class="formulario" id="form-conta-parceiro" novalidate style="margin-bottom:1.5rem;">
+            <div class="campo">
+              <label for="conta-usuario">Usuário <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="conta-usuario" name="usuario" required autocomplete="off" />
+            </div>
+            <div class="campo">
+              <label for="conta-senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input type="password" id="conta-senha" name="senha" required autocomplete="new-password" />
+            </div>
+            <div class="campo">
+              <label for="conta-nome">Nome do parceiro (opcional)</label>
+              <input type="text" id="conta-nome" name="nome" />
+            </div>
+            <button type="submit" class="botao botao--destaque">Criar conta</button>
+          </form>
+          <div class="lista-painel" id="lista-parceiros"></div>
+          <div id="sem-parceiros" class="mensagem mensagem--vazio oculto">
+            Nenhuma conta de parceiro cadastrada.
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -104,6 +132,7 @@
     </div>
   </footer>
 
+  <script src="js/auth.js"></script>
   <script src="js/dados.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/aviso.js"></script>
